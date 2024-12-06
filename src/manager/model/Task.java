@@ -1,3 +1,5 @@
+package manager.model;
+
 import java.util.Objects;
 
 public class Task {
@@ -21,6 +23,11 @@ public class Task {
 
     public Task(int id, String name, String description) {
         this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
+    public Task(String name, String description) {
         this.name = name;
         this.description = description;
     }
@@ -63,7 +70,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task{" +
+        return "manager.model.Task{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +

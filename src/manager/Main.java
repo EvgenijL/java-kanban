@@ -1,3 +1,10 @@
+package manager;
+
+import manager.model.Epic;
+import manager.model.Status;
+import manager.model.Subtask;
+import manager.model.Task;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -12,7 +19,7 @@ public class Main {
         taskManager.addTask(task2);
 
 
-        Epic epic1 = new Epic("Новая Эпик задача", "", Status.IN_PROGRESS);
+        Epic epic1 = new Epic("Новая Эпик задача", "");
         taskManager.addEpic(epic1);
 
 
@@ -22,7 +29,7 @@ public class Main {
         Subtask subtask2 = new Subtask("Еще одна подзадача для эпика", "Добавить ЕЩЕ одну подзадачу в эпик", Status.DONE, 3);
         taskManager.addSubtask(subtask2);
 
-        Epic epic2 = new Epic("эпик 2", "", Status.IN_PROGRESS);
+        Epic epic2 = new Epic("эпик 2", "");
         taskManager.addEpic(epic2);
 
         Subtask subtask3 = new Subtask("подзадача 1 эпика 2", "Описание подзадачи 1 эпика 2", Status.DONE, 6);
@@ -32,7 +39,7 @@ public class Main {
 
         taskManager.removeTaskById(1);
         taskManager.removeEpicById(3);
-        taskManager.removeSubtaskById(7);
+//        taskManager.removeSubtaskById(7);
 
         System.out.println(taskManager);
 
