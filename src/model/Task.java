@@ -1,4 +1,4 @@
-package manager.model;
+package model;
 
 import java.util.Objects;
 
@@ -70,7 +70,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "manager.model.Task{" +
+        return "model.Task{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
@@ -91,5 +91,4 @@ public class Task {
     public int hashCode() {
         return Objects.hash(id, name, description, status);
     }
-
 }

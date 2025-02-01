@@ -1,4 +1,4 @@
-package manager.model;
+package model;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,7 @@ public class Epic extends Task {
 
     private ArrayList<Integer> subtaskIds = new ArrayList<>();
 
-   public Epic(int id, String name, String description) {
+    private Epic(int id, String name, String description) {
         super(id, name, description, Status.NEW);
     }
 
