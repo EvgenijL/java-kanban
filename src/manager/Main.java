@@ -8,6 +8,7 @@ import model.Task;
 public class Main {
 
     public static void main(String[] args) {
+
         System.out.println("Поехали!");
         InMemoryTaskManager taskManager = new InMemoryTaskManager();
 
@@ -45,7 +46,33 @@ public class Main {
 //        System.out.println("История:");
 //        System.out.println(taskManager.getHistory());
 
-        taskManager.printAllTasks(taskManager);
 
+
+        printAllTasks(taskManager);
+
+    }
+
+    private static void printAllTasks(InMemoryTaskManager taskManager) {
+        System.out.println("Задачи:");
+        for (Task task : taskManager.getTasks()) {
+            System.out.println(task);
+        }
+        System.out.println("Эпики:");
+        for (Epic epic : taskManager.getEpics()) {
+            System.out.println(epic);
+
+            for (Task task : taskManager.getSubtaskByEpic(epic.getId())) {
+                System.out.println("--> " + task);
+            }
+        }
+        System.out.println("Подзадачи:");
+        for (Subtask newSubtask : taskManager.getSubtasks()) {
+            System.out.println(newSubtask);
+        }
+
+        System.out.println("История:");
+        for (Task task : taskManager.getHistory()) {
+            System.out.println(task);
+        }
     }
 }

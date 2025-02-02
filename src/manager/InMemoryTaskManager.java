@@ -37,8 +37,9 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public Task getTaskById(int id){
-        historyManager.addTask(tasks.get(id));
-        return tasks.get(id);
+        final Task task = tasks.get(id);
+        historyManager.addTask(task);
+        return task;
     }
 
     @Override
@@ -71,8 +72,9 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public Task getEpicById(int id){
-        historyManager.addTask(epics.get(id));
-        return epics.get(id);
+        final Epic epic = epics.get(id);
+        historyManager.addTask(epic);
+        return epic;
     }
 
     @Override
@@ -114,8 +116,9 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public Subtask getSubtaskById(int id){
-        historyManager.addTask(subtasks.get(id));
-        return subtasks.get(id);
+        final Subtask subtask = subtasks.get(id);
+        historyManager.addTask(subtask);
+        return subtask;
     }
 
     @Override
@@ -176,39 +179,4 @@ public class InMemoryTaskManager implements TaskManager {
             }
         }
     }
-
-    @Override
-    public void printAllTasks(TaskManager manager) {
-        System.out.println("Задачи:");
-        for (Task task : manager.getTasks()) {
-            System.out.println(task);
-        }
-        System.out.println("Эпики:");
-        for (Epic epic : manager.getEpics()) {
-            System.out.println(epic);
-
-            for (Task task : manager.getSubtaskByEpic(epic.getId())) {
-                System.out.println("--> " + task);
-            }
-        }
-        System.out.println("Подзадачи:");
-        for (Task subtask : manager.getSubtasks()) {
-            System.out.println(subtask);
-        }
-
-        System.out.println("История:");
-        for (Task task : manager.getHistory()) {
-            System.out.println(task);
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "manager.TaskManager{" +
-                "tasks=" + tasks +
-                ", epics=" + epics +
-                ", subtasks=" + subtasks +
-                '}';
-    }
-
 }

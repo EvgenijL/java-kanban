@@ -2,7 +2,7 @@ package manager;
 
 import model.Task;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,11 +10,13 @@ import java.util.Objects;
 
 public class InMemoryHistoryManager implements HistoryManager {
 
-    private final List<Task> historyStorage = new ArrayList<>();
+    private final List<Task> historyStorage = new LinkedList<>();
+    private static final int SIZE_HISTORY_STORAGE = 10;
 
     @Override
     public List<Task> getHistory() {
-        return historyStorage;
+        List<Task> newHistoryStorage = List.copyOf(historyStorage);
+        return newHistoryStorage;
     }
 
     @Override
@@ -25,8 +27,8 @@ public class InMemoryHistoryManager implements HistoryManager {
 
         historyStorage.add(new Task(task.getId(), task.getName(), task.getDescription(), task.getStatus()));
 
-        if (historyStorage.size() > 10) {
-            historyStorage.remove(0);
+        if (historyStorage.size() > SIZE_HISTORY_STORAGE) {
+            historyStorage.removeFirst();
         }
     }
 }
