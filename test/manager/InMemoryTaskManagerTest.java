@@ -105,4 +105,31 @@ class InMemoryTaskManagerTest {
         assertEquals("Description", history.get(0).getDescription(), "Описание задачи в истории должно соответствовать исходному описанию");
     }
 
+    @Test
+    public void shouldNotStoreOldIdsDeletedSubtasks() {
+        Epic epic = new Epic("Эпик", "Задача эпика");
+        Subtask subtask1 = new Subtask(2,"Сабтаск1", "Задача сабтаска1", Status.NEW, 1);
+        Subtask subtask2 = new Subtask(3,"Сабтаск2", "Задача сабтаска2", Status.NEW, 1);
+        taskManager.addEpic(epic);
+        taskManager.addSubtask(subtask1);
+        taskManager.addSubtask(subtask2);
+        taskManager.removeSubtaskById(2);
+
+        assertNull(taskManager.getSubtaskById(2), "История не должна содержать старый Id");
+    }
+
+    @Test
+    public void shouldBeNoIrrelevantSubtaskIdsLeftInsideEpics() {
+        Epic epic = new Epic("Эпик", "Задача эпика");
+        Subtask subtask1 = new Subtask(2,"Сабтаск1", "Задача сабтаска1", Status.NEW, 1);
+        Subtask subtask2 = new Subtask(3,"Сабтаск2", "Задача сабтаска2", Status.NEW, 1);
+        taskManager.addEpic(epic);
+        taskManager.addSubtask(subtask1);
+        taskManager.addSubtask(subtask2);
+        taskManager.removeSubtaskById(2);
+
+        boolean result =  epic.getSubtaskIds().contains(2);
+
+        assertFalse(result, "История не должна содержать старый Id");
+    }
 }
