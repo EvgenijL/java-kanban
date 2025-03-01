@@ -168,7 +168,7 @@ public class InMemoryTaskManager implements TaskManager {
         int newSubtask = 0;
         int doneSubtask = 0;
 
-        for (int subtaskID : epic.getSubtaskIds()) {//
+        for (int subtaskID : epic.getSubtaskIds()) {
             status = subtasks.get(subtaskID).getStatus();
             totalStatus++;
 
