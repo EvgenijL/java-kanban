@@ -12,42 +12,66 @@ public class Main {
         System.out.println("Поехали!");
         InMemoryTaskManager taskManager = new InMemoryTaskManager();
 
-        Task task1 = new Task("Задача1", "Выполнить задание", Status.DONE);
-        taskManager.addTask(task1);
-        taskManager.getTaskById(1);
-
-        Task task2 = new Task("Задача2", "Сдатьзадание", Status.IN_PROGRESS);
+        // создаем задачи
+        Task task1 = new Task("Задача1 (ID=1)", "Выполнить задачу 1", Status.DONE);
+        taskManager.addTask(task1); // добавили эпик (id 1)
+        Task task2 = new Task("Задача2 (ID=2)", "Выполнить задачу 2", Status.IN_PROGRESS);
         taskManager.addTask(task2);
-        taskManager.getTaskById(2);
 
-        Epic epic1 = new Epic("Новая Эпик задача", "");
+        // создаем эпики
+        Epic epic1 = new Epic("Эпик1 (ID=3)", "Выполнить эпик 1");
         taskManager.addEpic(epic1);
-        taskManager.getEpicById(3);
-
-        Subtask subtask = new Subtask("Новая подзадача для эпика", "Добавить подзадачу в эпик", Status.DONE, 3);
-        taskManager.addSubtask(subtask);
-
-        Subtask subtask2 = new Subtask("Еще одна подзадача для эпика", "Добавить ЕЩЕ одну подзадачу в эпик", Status.DONE, 3);
-        taskManager.addSubtask(subtask2);
-
-        Epic epic2 = new Epic("эпик 2", "");
+        Epic epic2 = new Epic("Эпик2 (ID=4)", "Выполнить эпик 2");
         taskManager.addEpic(epic2);
 
-        Subtask subtask3 = new Subtask("подзадача 1 эпика 2", "Описание подзадачи 1 эпика 2", Status.DONE, 6);
+        // создаем сабтаски
+        Subtask subtask1 = new Subtask("Сабтаск1 (ID=5)", "Выполнить сабтаск 1", Status.IN_PROGRESS, 3);
+        taskManager.addSubtask(subtask1);
+        Subtask subtask2 = new Subtask("Сабтаск2 (ID=6)", "Выполнить сабтаск 2", Status.DONE, 3);
+        taskManager.addSubtask(subtask2);
+        Subtask subtask3 = new Subtask("Сабтаск3 (ID=7)", "Выполнить сабтаск 3", Status.DONE, 4);
         taskManager.addSubtask(subtask3);
+        Subtask subtask4 = new Subtask("Сабтаск4 (ID=8)", "Выполнить сабтаск 4", Status.DONE, 4);
+        taskManager.addSubtask(subtask4);
 
-//        System.out.println(taskManager);
+        // история после добавления
+        System.out.println("Статистика после добавления");
+        printAllTasks(taskManager);
 
-        taskManager.removeTaskById(1);
-        taskManager.removeEpicById(3);
+        // запросы просмотров
+        taskManager.getTaskById(task1.getId());
+        taskManager.getTaskById(task2.getId());
+        taskManager.getEpicById(epic1.getId());
+        taskManager.getEpicById(epic2.getId());
+        taskManager.getSubtaskById(subtask1.getId());
+        taskManager.getSubtaskById(subtask2.getId());
+        taskManager.getSubtaskById(subtask3.getId());
+        taskManager.getSubtaskById(subtask4.getId());
 
-        System.out.println(taskManager);
+        System.out.println();
+        System.out.println("Статистика после просмотров");
+        printAllTasks(taskManager);
 
-//        System.out.println("История:");
-//        System.out.println(taskManager.getHistory());
+        // удаляем
+        taskManager.removeTaskById(task1.getId());
+        taskManager.removeEpicById(epic1.getId());
+        taskManager.removeSubtaskById(subtask3.getId());
 
+        System.out.println();
+        System.out.println("Статистика после удаления");
+        printAllTasks(taskManager);
 
+        taskManager.getSubtaskById(subtask4.getId());
+        taskManager.getTaskById(task2.getId());
 
+        System.out.println();
+        System.out.println("Статистика после второго просмотра");
+        printAllTasks(taskManager);
+
+        taskManager.clearSubtasks();
+
+        System.out.println();
+        System.out.println("Статистика после метода clear");
         printAllTasks(taskManager);
 
     }
