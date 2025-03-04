@@ -67,6 +67,13 @@ public class Main {
         System.out.println();
         System.out.println("Статистика после второго просмотра");
         printAllTasks(taskManager);
+
+        taskManager.clearSubtasks();
+
+        System.out.println();
+        System.out.println("Статистика после метода clear");
+        printAllTasks(taskManager);
+
     }
 
     private static void printAllTasks(InMemoryTaskManager taskManager) {
