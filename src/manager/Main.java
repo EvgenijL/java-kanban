@@ -88,7 +88,7 @@ public class Main {
         }
     }
 
-    private static File createFile (String fileName) {
+    private static File createFile(String fileName) {
         try {
             return Files.createFile(Paths.get(fileName)).toFile();
         } catch (IOException exception) {
