@@ -42,7 +42,7 @@ class FileBackedTaskManagerTest {
         FileBackedTaskManager taskManager2 = FileBackedTaskManager.loadFromFile(newFile);
 
         assertEquals(1, taskManager2.getTasks().size(), "Задача должны быть одна");
-        Task newTask = taskManager2.getTaskById(1);
+        Task newTask = taskManager2.getTasks().getFirst();
         assertEquals("Задача", newTask.getName(), "Название задача должно совпадать");
         assertEquals(Status.NEW, newTask.getStatus(), "Статус должен совпадать");
 
