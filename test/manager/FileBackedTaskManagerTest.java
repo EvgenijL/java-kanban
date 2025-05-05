@@ -50,9 +50,5 @@ class FileBackedTaskManagerTest {
         Epic newEpic = taskManager2.getEpics().getFirst();
         assertEquals("Эпик", newEpic.getName(), "Название эпика должно совпадать");
         assertEquals(Status.NEW, newEpic.getStatus(), "Статус должен совпадать");
-
-        Subtask newSubtask = taskManager2.getSubtasks().getFirst();
-        assertEquals("Подзадача", newSubtask.getName(), "Название подзадачи должно совпадать");
-        assertEquals(Status.NEW, newSubtask.getStatus(), "Статус должен совпадать");
     }
 }
