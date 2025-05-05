@@ -5,13 +5,23 @@ import model.Status;
 import model.Subtask;
 import model.Task;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 public class Main {
+
+    private static final String FILE_NAME = "java-kanban/resources/storage.csv";
 
     public static void main(String[] args) {
 
-        System.out.println("Поехали!");
-        InMemoryTaskManager taskManager = new InMemoryTaskManager();
+        File fileStorage = createFile(FILE_NAME);
 
+        System.out.println("Поехали!");
+
+        try {
+            TaskManager taskManager = Managers.getDefaultTaskManager(fileStorage);
         // создаем задачи
         Task task1 = new Task("Задача1 (ID=1)", "Выполнить задачу 1", Status.DONE);
         taskManager.addTask(task1); // добавили эпик (id 1)
@@ -73,10 +83,21 @@ public class Main {
         System.out.println();
         System.out.println("Статистика после метода clear");
         printAllTasks(taskManager);
-
+        } catch (ManagerSaveException exception) {
+            System.out.println("Перезапустите программу");
+        }
     }
 
-    private static void printAllTasks(InMemoryTaskManager taskManager) {
+    private static File createFile (String fileName) {
+        try {
+            return Files.createFile(Paths.get(fileName)).toFile();
+        } catch (IOException exception) {
+            System.out.println("Ошибка, файл не создан" + exception.getMessage());
+        }
+        throw new UnsupportedOperationException("Файл не создан");
+    }
+
+    private static void printAllTasks(TaskManager taskManager) {
         System.out.println("Задачи:");
         for (Task task : taskManager.getTasks()) {
             System.out.println(task);
