@@ -12,28 +12,27 @@ public class TaskCsvFormatHandler {
 
     public static String toString(Task task) {
         //1,TASK,Task1,NEW,Description task1,
-        return task.getId() + DELIMITER
-                + task.getType() + DELIMITER
-                + task.getName() + DELIMITER
-                + task.getStatus() + DELIMITER
-                + task.getDescription() + DELIMITER;
-    }
-
-    public static String toString(Epic epic) {
-        return epic.getId() + DELIMITER
-                + epic.getType() + DELIMITER
-                + epic.getName() + DELIMITER
-                + epic.getStatus() + DELIMITER
-                + epic.getDescription() + DELIMITER;
-    }
-
-    public static String toString(Subtask subtask) {
-        return subtask.getId() + DELIMITER
-                + subtask.getType() + DELIMITER
-                + subtask.getName() + DELIMITER
-                + subtask.getStatus() + DELIMITER
-                + subtask.getDescription() + DELIMITER
-                + subtask.getEpicId();
+        if (!(task instanceof Epic || task instanceof Subtask)) {
+            return task.getId() + DELIMITER
+                    + task.getType() + DELIMITER
+                    + task.getName() + DELIMITER
+                    + task.getStatus() + DELIMITER
+                    + task.getDescription() + DELIMITER;
+        } else if (task instanceof Epic epic) {
+            return epic.getId() + DELIMITER
+                    + epic.getType() + DELIMITER
+                    + epic.getName() + DELIMITER
+                    + epic.getStatus() + DELIMITER
+                    + epic.getDescription() + DELIMITER;
+        } else {
+            Subtask subtask = (Subtask) task;
+            return subtask.getId() + DELIMITER
+                    + subtask.getType() + DELIMITER
+                    + subtask.getName() + DELIMITER
+                    + subtask.getStatus() + DELIMITER
+                    + subtask.getDescription() + DELIMITER
+                    + subtask.getEpicId();
+        }
     }
 
     public static Task fromString(String value) {

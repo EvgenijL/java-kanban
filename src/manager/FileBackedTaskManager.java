@@ -109,13 +109,10 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     }
 
     @Override
-    public ArrayList<Task> getTasks() {
-        return super.getTasks();
-    }
-
-    @Override
     public Task getTaskById(int id) {
-        return super.getTaskById(id);
+        final Task task = super.getTaskById(id);
+        save();
+        return task;
     }
 
     @Override
@@ -143,13 +140,10 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     }
 
     @Override
-    public ArrayList<Epic> getEpics() {
-        return super.getEpics();
-    }
-
-    @Override
     public Task getEpicById(int id) {
-        return super.getEpicById(id);
+        final Task epic = super.getEpicById(id);
+        save();
+        return epic;
     }
 
     @Override
@@ -177,13 +171,10 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     }
 
     @Override
-    public ArrayList<Subtask> getSubtasks() {
-        return super.getSubtasks();
-    }
-
-    @Override
     public Subtask getSubtaskById(int id) {
-        return super.getSubtaskById(id);
+        final Subtask subtask = super.getSubtaskById(id);
+        save();
+        return subtask;
     }
 
     @Override
@@ -196,15 +187,5 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     public void clearSubtasks() {
         super.clearSubtasks();
         save();
-    }
-
-    @Override
-    public ArrayList<Subtask> getSubtaskByEpic(int epicId) {
-        return super.getSubtaskByEpic(epicId);
-    }
-
-    @Override
-    public List<Task> getHistory() {
-        return super.getHistory();
     }
 }

@@ -62,26 +62,26 @@ public class Main {
         System.out.println("Статистика после просмотров");
         printAllTasks(taskManager);
 
-        // удаляем
-        taskManager.removeTaskById(task1.getId());
-        taskManager.removeEpicById(epic1.getId());
-        taskManager.removeSubtaskById(subtask3.getId());
-
-        System.out.println();
-        System.out.println("Статистика после удаления");
-        printAllTasks(taskManager);
-
-        taskManager.getSubtaskById(subtask4.getId());
-        taskManager.getTaskById(task2.getId());
-
-        System.out.println();
-        System.out.println("Статистика после второго просмотра");
-        printAllTasks(taskManager);
-
-        taskManager.clearSubtasks();
-
-        System.out.println();
-        System.out.println("Статистика после метода clear");
+//        // удаляем
+//        taskManager.removeTaskById(task1.getId());
+//        taskManager.removeEpicById(epic1.getId());
+//        taskManager.removeSubtaskById(subtask3.getId());
+//
+//        System.out.println();
+//        System.out.println("Статистика после удаления");
+//        printAllTasks(taskManager);
+//
+//        taskManager.getSubtaskById(subtask4.getId());
+//        taskManager.getTaskById(task2.getId());
+//
+//        System.out.println();
+//        System.out.println("Статистика после второго просмотра");
+//        printAllTasks(taskManager);
+//
+//        taskManager.clearSubtasks();
+//
+//        System.out.println();
+//        System.out.println("Статистика после метода clear");
         printAllTasks(taskManager);
         } catch (ManagerSaveException exception) {
             System.out.println("Перезапустите программу");
